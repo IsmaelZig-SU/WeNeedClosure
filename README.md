@@ -47,13 +47,13 @@ We follow the Denoising Diffusion Probabilistic Model (DDPM) framework.
 Starting from a clean FOM sample \( x_0 \), Gaussian noise is progressively added according to the forward process:
 
 $$
-q(x_t \mid x_{t-1}) = \mathcal{N}\!\left(x_t; \sqrt{1-\beta_t}\,x_{t-1}, \beta_t I\right)
+q(x_t \mid x_{t-1}) = \mathcal{N}\!\left(x_t; \sqrt{1-\beta_t}\x_{t-1}, \beta_t I\right)
 $$
 
 which admits the closed-form expression:
 
 $$
-q(x_t \mid x_0) = \mathcal{N}\!\left(x_t; \sqrt{\bar{\alpha}_t}\,x_0, (1-\bar{\alpha}_t)I\right)
+q(x_t \mid x_0) = \mathcal{N}\!\left(x_t; \sqrt{\bar{\alpha}_t}\x_0, (1-\bar{\alpha}_t)I\right)
 $$
 
 with
@@ -77,10 +77,10 @@ $$
 The goal of diffusion modeling is to learn the corresponding reverse-time SDE:
 
 $$
-dx = \left[ f(x,t) - g(t)^2 \nabla_x \log p_t(x) \right] dt + g(t)\, d\bar{W}_t.
+dx = \left[ f(x,t) - g(t)^2 \nabla_x \log p_t(x) \right] dt + g(t)\ d\bar{W}_t.
 $$
 
-Here, \( \nabla_x \log p_t(x) \) is the score function (gradient of the log-density), and \( d\bar{W}_t \) denotes a reverse-time Wiener process.
+Here, the score function (gradient of the log-density), and \( d\bar{W}_t \) denotes a reverse-time Wiener process.
 
 The reverse-time dynamics are derived from the **Fokker–Planck equation**, which governs the evolution of the probability density \( p_t(x) \).  
 Learning the score function allows the diffusion process to be inverted and samples from the target FOM distribution to be generated.
@@ -118,7 +118,7 @@ The architecture employs:
 Attention computes weighted combinations of tokens based on similarity:
 
 $$
-\mathrm{Attention}(Q,K,V) = \mathrm{softmax}\!\left(\frac{QK^\top}{\sqrt{d}}\right)V.
+\mathrm{Attention}(Q,K,V) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d}}\right)V.
 $$
 
 - **Self-attention**: \(Q,K,V\) come from the same sequence (FOM tokens).
